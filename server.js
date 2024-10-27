@@ -6,7 +6,15 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+// Define CORS options to allow specific origin
+const corsOptions = {
+  origin: 'https://concept-air-for-share-frontend.vercel.app', // Your frontend domain
+  methods: ['GET', 'POST', 'DELETE'], // Specify allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 console.log("MongoDB URI:", process.env.MONGO_URI); // Debugging line
